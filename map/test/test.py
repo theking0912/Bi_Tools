@@ -3,6 +3,9 @@
 import datetime
 import os
 
+import pyhdb
+from map.utils import hanadb
+
 dirPath = 'C:/Users/37646/IdeaProjects/Bi_Tools/map/log/'
 nowdate = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
 
@@ -36,6 +39,37 @@ def mkdir():
     file.write("hello world!")
     file.closed
 
+def conn_db():
+    connection = pyhdb.connect(
+        host="172.16.0.62",
+        port=34015,
+        user="XDSW_BI",
+        password="QAH_Bi_2019"
+    )
+
+    return connection
+
+all_insert_sql = ["""INSERT INTO HANA_DIM.ZT_MAP_ADDR VALUES ('120.74028483072917,31.254676649305555','120.74021','31.2548331','中国','江苏省','苏州市','苏州工业园区','裕新路','苏州工业园区直属镇','20200415');
+""","""INSERT INTO HANA_DIM.ZT_MAP_ADDR VALUES ('120.738545,31.256886','120.737911','31.2575139','中国','江苏省','苏州市','苏州工业园区','若水路','苏州工业园区直属镇','20200415');
+"""]
+
+# insert data
+def insertdata(all_insert_sql):
+    all_insert_count = 0
+    conn = conn_db()
+    cursor = conn.cursor()
+    for i in range(len(all_insert_sql)):
+        print(all_insert_sql[i])
+        try:
+            cursor.execute(all_insert_sql[i])
+            insert_count = cursor.rowcount
+            all_insert_count = all_insert_count + insert_count
+        except pyhdb.exceptions.IntegrityError:
+            continue
+    cursor.close()
+    conn.commit()
+
+    return all_insert_count
 
 if __name__ == '__main__':
-    mkdir()
+    insertdata(all_insert_sql)

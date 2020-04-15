@@ -20,9 +20,13 @@ def insertdata(all_insert_sql):
     cursor = conn.cursor()
     for i in range(len(all_insert_sql)):
         print(all_insert_sql[i])
-        cursor.execute(all_insert_sql[i])
-        insert_count = cursor.rowcount
-        all_insert_count = all_insert_count + insert_count
+        try:
+            cursor.execute(all_insert_sql[i])
+            insert_count = cursor.rowcount
+            all_insert_count = all_insert_count + insert_count
+        # 增加主键异常判断
+        except pyhdb.exceptions.IntegrityError:
+            continue
     cursor.close()
     conn.commit()
 
