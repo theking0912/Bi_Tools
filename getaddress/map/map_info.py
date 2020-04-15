@@ -5,23 +5,19 @@ import datetime
 from time import sleep
 from urllib import parse
 from urllib import request
-from map.utils import hanadb
+from getaddress.utils import hanadb
+from getaddress.log import gener_log
 
 
 #  接口地址：https://restapi.amap.com/v3/geocode/regeo?output=json&location=116.310003,39.991957&key=18921641f129198d0c392a95070f4e30
 #  接口文档：https://lbs.amap.com/api/webservice/guide/api/georegeo
 
-# 当天日期
-nowdate = datetime.datetime.now().strftime('%Y%m%d')
-
 # 高德地图api key
 key = '18921641f129198d0c392a95070f4e30'
+nowdate = datetime.datetime.now().strftime('%Y%m%d')
 
 # 限制数据处理条数，根据API限制规定，高德地图限制6000条/天
 process_count = 6000
-
-# 生成数据存放表名
-table_name = "HANA_DIM.ZT_MAP_ADDR"
 
 # insert sql
 insert_sql_be = "INSERT INTO "
@@ -30,7 +26,7 @@ insert_sql_en = ");\r"
 
 # 打卡经纬度数据需要更换为底表数据
 lnglat_sql = """
-                SELECT CC_ONADDR FROM (
+                SELECT DISTINCT CC_ONADDR FROM (
             select distinct a1.LDATE,a1.CC_ONADDR
               from "_SYS_BIC"."xdsw.datameta.hr/CA_PERSON_PUNCH_BASIC_STAT" a1
               left join HANA_DIM.ZT_MAP_ADDR a2
@@ -41,7 +37,6 @@ lnglat_sql = """
              ORDER BY a1.LDATE DESC)"""
 
 limit_sql = """select count(1) as ins_count from HANA_DIM.ZT_MAP_ADDR WHERE INS_DATE = '""" + nowdate + "'"
-
 
 # 获取经纬度数据
 def getLngLat(lnglat_sql):
@@ -55,7 +50,7 @@ def getLngLat(lnglat_sql):
         return '','E','高德地图key使用已到上限，明日重置！'
 
 # 获取地址信息
-def getAddress():
+def getAddress(file_path):
     # 获取打卡经纬度数据集
     result,process_flag,msg = getLngLat(lnglat_sql)
     if process_flag == 'S' and len(result) > 0:
@@ -66,12 +61,14 @@ def getAddress():
             lnglat = str(result[n][0])
             #拼接请求
             url = 'https://restapi.amap.com/v3/geocode/regeo?output=json&location='+lnglat+'&key=' + key
-            print(url)
+            gener_log.append_log(file_path,url + '\r')
             #编码
             newUrl = parse.quote(url, safe="/:=&?#+!$,;'@()*[]")
             # 休眠20 ~ 40ms     QPS 100次/s      1次/10ms
             sleep(0.04)
+
             body = fetch_data(newUrl)
+
             if body['status'] == '1':
                 # 拼接数据
                 addressComponent = body['regeocode']['addressComponent']
@@ -129,12 +126,35 @@ def fetch_data(url):
     with request.urlopen(req) as f:     # 打开url请求（如同打开本地文件一样）
         return json.loads(f.read().decode('utf-8'))  # 读数据 并编码同时利用json.loads将json格式数据转换为python对象
 
-if __name__ == "__main__":
-    all_insert_count = 0
-    data,process_flag,msg = getAddress()
-    if process_flag == 'S' and len(data) > 0:
-        all_insert_sql = generinsertsql(table_name,data)
-        all_insert_count = hanadb.insertdata(all_insert_sql)
-        print('生成' + str(all_insert_count) + '条数据，执行状态：'+ msg)
-    else:
-        print(msg)
+# if __name__ == "__main__":
+#     print('STEP1: 检查目录是否存在')
+#     # 创建目录
+#     gener_log.mkdir()
+#
+#     print('STEP2: 创建日志文件')
+#     # 创建文件
+#     file_path = gener_log.mkfile('map_info_address_',nowdatetime)
+#     gener_log.append_log(file_path,'STEP1 AND STEP2: 检查目录是否存在 AND 创建日志文件\r')
+#
+#     all_insert_count = 0
+#     print('STEP3: 通过经纬度解析地址信息，拼接结构化数据，生成INSERT语句')
+#     gener_log.append_log(file_path,'STEP3: 通过经纬度解析地址信息，拼接结构化数据，生成INSERT语句\r')
+#     data,process_flag,msg = getAddress(file_path)
+#     print(data)
+#     print(process_flag)
+#     print(msg)
+#     if process_flag == 'S' and len(data) > 0:
+#         print('STEP4: 批量生成INSERT语句')
+#         gener_log.append_log(file_path,'STEP5: 批量生成INSERT语句\r')
+#         all_insert_sql = generinsertsql(table_name,data)
+#         print('STEP5: 执行INSERT语句')
+#         gener_log.append_log(file_path,'STEP5: 执行INSERT语句\r')
+#         all_insert_count = hanadb.insertdata(file_path,all_insert_sql)
+#         gener_log.append_log(file_path,'生成' + str(all_insert_count) + '条数据，执行状态：'+ msg + '\r')
+#     elif process_flag == 'S' and len(data) == 0:
+#         msg = '超出api提供限量'
+#         gener_log.append_log(file_path,msg + '\r')
+#         print(msg)
+#     else:
+#         print(msg)
+#         gener_log.append_log(file_path,msg + '\r')

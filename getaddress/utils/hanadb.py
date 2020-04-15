@@ -1,6 +1,7 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 import pyhdb
+from getaddress.log import gener_log
 
 # get connection
 def conn_db():
@@ -14,12 +15,12 @@ def conn_db():
     return connection
 
 # insert data
-def insertdata(all_insert_sql):
+def insertdata(file_path,all_insert_sql):
     all_insert_count = 0
     conn = conn_db()
     cursor = conn.cursor()
     for i in range(len(all_insert_sql)):
-        print(all_insert_sql[i])
+        gener_log.append_log(file_path,all_insert_sql[i] + '\r')
         try:
             cursor.execute(all_insert_sql[i])
             insert_count = cursor.rowcount
@@ -72,5 +73,5 @@ def typeof(variate):
         type = "set"
     return type
 
-if __name__ == '__main__':
-    pass
+# if __name__ == '__main__':
+#     pass

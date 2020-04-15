@@ -72,4 +72,7 @@ def insertdata(all_insert_sql):
     return all_insert_count
 
 if __name__ == '__main__':
-    insertdata(all_insert_sql)
+    mkdir()
+
+
+
