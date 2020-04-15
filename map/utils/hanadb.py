@@ -14,17 +14,19 @@ def conn_db():
     return connection
 
 # insert data
-def insertdata(insert_sql):
-    print(insert_sql)
+def insertdata(all_insert_sql):
+    all_insert_count = 0
     conn = conn_db()
     cursor = conn.cursor()
-    cursor.execute(insert_sql)
-    insert_count = cursor.rowcount
+    for i in range(len(all_insert_sql)):
+        print(all_insert_sql[i])
+        cursor.execute(all_insert_sql[i])
+        insert_count = cursor.rowcount
+        all_insert_count = all_insert_count + insert_count
     cursor.close()
     conn.commit()
-    conn.close()
 
-    return insert_count
+    return all_insert_count
 
 # select multiple data
 def getMulData(query_sql,query_count):
@@ -33,8 +35,6 @@ def getMulData(query_sql,query_count):
     cursor.execute(query_sql)
     result = cursor.fetchmany(query_count)
     cursor.close()
-    conn.commit()
-    conn.close()
 
     return result
 
@@ -67,7 +67,6 @@ def typeof(variate):
     elif isinstance(variate,set):
         type = "set"
     return type
-
 
 if __name__ == '__main__':
     pass
