@@ -9,7 +9,7 @@ from getaddress.map import map_info
 # 当天日期
 nowdatetime = datetime.datetime.now().strftime('%Y%m%d%H')
 # 生成数据存放表名
-table_name = "HANA_DIM.ZT_MAP_ADDR"
+table_name = "HANA_DIM.ZT_MAP_ADDR_TEMP"
 
 if __name__ == "__main__":
     print('STEP1: 检查目录是否存在')
@@ -35,7 +35,7 @@ if __name__ == "__main__":
         all_insert_count = hanadb.insertdata(file_path,all_insert_sql)
         gener_log.append_log(file_path,'生成' + str(all_insert_count) + '条数据，执行状态：'+ msg + '\r')
     elif process_flag == 'S' and len(data) == 0:
-        msg = '超出api提供限量'
+        msg = '超出api提供限量，或无法解析此经纬度'
         gener_log.append_log(file_path,msg + '\r')
         print(msg)
     else:

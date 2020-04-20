@@ -13,17 +13,7 @@ from getaddress.log import gener_log
 #  接口文档：https://lbs.amap.com/api/webservice/guide/api/georegeo
 
 # 高德地图api key
-# key = ('069cc16b24dc0103cdf9c65bbe69c240',
-# 'a72da35f2f8ccd687ac50b894e273da8',
-# '1fdc739fdaa7bcecb3111240d7fae4a7',
-# 'd81b0e39bf0b19e9fc9e36d969d2a380',
-# '186ded73708954e03e0db57aa767a25d',
-# 'fa12c7c011a50b9c63dad1d13ebdab4a',
-# '30ced030bf1eb5ef12fdcbbfaf6834b4',
-# '3325e00552aa94a5785fd9b65be71b42',
-# '2fbae9ba1fdd5375f9c7e0e84f54ce05',
-# '18921641f129198d0c392a95070f4e30')
-key = '186ded73708954e03e0db57aa767a25d'
+key = '18921641f129198d0c392a95070f4e30'
 nowdate = datetime.datetime.now().strftime('%Y%m%d')
 
 # 限制数据处理条数，根据API限制规定，高德地图限制6000条/天
@@ -42,31 +32,10 @@ lnglat_sql = """
               left join HANA_DIM.ZT_MAP_ADDR a2
                 on a1.CC_ONADDR = a2.LOCATION
              where a2.LOCATION is null
-               and (a1.CC_ONADDR != null
+               and (a1.CC_ONADDR != null 
                 or a1.CC_ONADDR != '')
              ORDER BY a1.LDATE DESC)"""
 
-# lnglat_sql = """
-#                 with a as (
-# SELECT DISTINCT CC_ONADDR FROM (
-#             select distinct a1.LDATE,to_char(to_decimal(substr_before(a1.CC_ONADDR,','),6,3))||','||to_char(to_decimal(substr_after(a1.CC_ONADDR,','),6,3)) as CC_ONADDR
-#               from "_SYS_BIC"."xdsw.datameta.hr/CA_PERSON_PUNCH_BASIC_STAT" a1
-#               left join HANA_DIM.ZT_MAP_ADDR a2
-#                 on a1.CC_ONADDR = a2.LOCATION
-#              where a2.LOCATION is null
-#                and a1.CC_ONADDR NOT LIKE '%undefined%'
-#                and (a1.CC_ONADDR != null
-#                 or a1.CC_ONADDR != '')
-#              ORDER BY a1.LDATE DESC))
-# ,b as (
-# SELECT location FROM "HANA_DIM"."ZT_MAP_ADDR_TEMP"
-# )
-# select a.CC_ONADDR from a
-# left join b
-#   on a.CC_ONADDR = b.location
-# where b.location is null"""
-
-# limit_sql = """select count(1) as ins_count from HANA_DIM.ZT_MAP_ADDR_TEMP WHERE INS_DATE = '""" + nowdate + "'"
 limit_sql = """select count(1) as ins_count from HANA_DIM.ZT_MAP_ADDR WHERE INS_DATE = '""" + nowdate + "'"
 
 # 获取经纬度数据
@@ -98,8 +67,6 @@ def getAddress(file_path):
             # 休眠20 ~ 40ms     QPS 100次/s      1次/10ms
             sleep(0.04)
 
-
-            # 'DAILY_QUERY_OVER_LIMIT'
             body = fetch_data(newUrl)
             if body['status'] == '1':
 
@@ -110,6 +77,8 @@ def getAddress(file_path):
                 district = get_value(body,'district','NONE')
                 township = get_value(body,'township','NONE')
                 location = get_value(body,'location','NONE')
+                print(location)
+                print(hanadb.typeof(location))
                 if location != 'NONE':
                     lng = location.split(',')[0]
                     lat = location.split(',')[1]
@@ -129,15 +98,13 @@ def getAddress(file_path):
 # 生成入库语句
 def generinsertsql(table_name,value_dic):
     all_insert_sql = []
-    v_count = 0
+
     insert_head = insert_sql_be + table_name + insert_sql_mid
     for i in range(len(value_dic)):
-        v_count = v_count + 1
-        print(v_count)
         value_part = ''
         for j in range(len(value_dic[i])):
             if value_dic[i][j] == []:
-                value_part = value_part + '' + "','"
+                value_part = value_part + value_dic[i][j-1] + "','"
             else:
                 value_part = value_part + value_dic[i][j] + "','"
         insert_sql = insert_head + value_part[0:-2] + insert_sql_en

@@ -17,11 +17,15 @@ def conn_db():
 # insert data
 def insertdata(file_path,all_insert_sql):
     all_insert_count = 0
+    v_count = 0
     conn = conn_db()
     cursor = conn.cursor()
     for i in range(len(all_insert_sql)):
+        v_count = v_count + 1
+        print(v_count)
         gener_log.append_log(file_path,all_insert_sql[i] + '\r')
         try:
+            print(all_insert_sql[i])
             cursor.execute(all_insert_sql[i])
             insert_count = cursor.rowcount
             all_insert_count = all_insert_count + insert_count
