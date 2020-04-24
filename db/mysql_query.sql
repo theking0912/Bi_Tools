@@ -1,0 +1,1 @@
+SELECT * FROM `finedb`.`asd` LIMIT 1000;
