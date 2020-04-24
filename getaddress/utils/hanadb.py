@@ -6,10 +6,21 @@ from getaddress.log import gener_log
 # get connection
 def conn_db():
     connection = pyhdb.connect(
-    host="172.16.0.62",
-    port=34015,
-    user="XDSW_BI",
-    password="QAH_Bi_2019"
+        host="hana-dw.innoventbio.com",
+        port=30015,
+        user="XDSW_JWD",
+        password="XdswJwd2020"
+    )
+
+    return connection
+
+# get connection
+def conn_db_test():
+    connection = pyhdb.connect(
+        host="172.16.0.62",
+        port=34015,
+        user="XDSW_BI",
+        password="QAH_Bi_2019"
     )
 
     return connection

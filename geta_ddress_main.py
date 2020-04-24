@@ -9,7 +9,7 @@ from getaddress.map import map_info
 # 当天日期
 nowdatetime = datetime.datetime.now().strftime('%Y%m%d%H')
 # 生成数据存放表名
-table_name = "HANA_DIM.ZT_MAP_ADDR_TEMP"
+table_name = "HANA_DIM.ZT_MAP_ADDR"
 
 if __name__ == "__main__":
     print('STEP1: 检查目录是否存在')

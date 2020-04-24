@@ -23,11 +23,11 @@ from getaddress.log import gener_log
 # '3325e00552aa94a5785fd9b65be71b42',
 # '2fbae9ba1fdd5375f9c7e0e84f54ce05',
 # '18921641f129198d0c392a95070f4e30')
-key = '186ded73708954e03e0db57aa767a25d'
+key = 'fa12c7c011a50b9c63dad1d13ebdab4a'
 nowdate = datetime.datetime.now().strftime('%Y%m%d')
 
 # 限制数据处理条数，根据API限制规定，高德地图限制6000条/天
-process_count = 6000
+process_count = 24100
 
 # insert sql
 insert_sql_be = "INSERT INTO "
@@ -35,13 +35,26 @@ insert_sql_mid = " VALUES ('"
 insert_sql_en = ");\r"
 
 # 打卡经纬度数据需要更换为底表数据
+# lnglat_sql = """
+#                 SELECT DISTINCT CC_ONADDR FROM (
+#             select distinct a1.LDATE,a1.CC_ONADDR
+#               from "_SYS_BIC"."xdsw.datameta.hr/CA_PERSON_PUNCH_BASIC_STAT" a1
+#               left join HANA_DIM.ZT_MAP_ADDR a2
+#                 on a1.CC_ONADDR = a2.LOCATION
+#              where a2.LOCATION is null
+#                and (a1.CC_ONADDR != null
+#                 or a1.CC_ONADDR != '')
+#              ORDER BY a1.LDATE DESC)"""
+
+# 打卡经纬度数据需要更换为底表数据
 lnglat_sql = """
                 SELECT DISTINCT CC_ONADDR FROM (
-            select distinct a1.LDATE,a1.CC_ONADDR
+            select distinct a1.LDATE,to_char(to_decimal(substr_before(a1.CC_ONADDR,','),6,3))||','||to_char(to_decimal(substr_after(a1.CC_ONADDR,','),6,3)) as CC_ONADDR
               from "_SYS_BIC"."xdsw.datameta.hr/CA_PERSON_PUNCH_BASIC_STAT" a1
               left join HANA_DIM.ZT_MAP_ADDR a2
-                on a1.CC_ONADDR = a2.LOCATION
+                on to_char(to_decimal(substr_before(a1.CC_ONADDR,','),6,3))||','||to_char(to_decimal(substr_after(a1.CC_ONADDR,','),6,3)) = a2.LOCATION
              where a2.LOCATION is null
+               and a1.CC_ONADDR NOT LIKE '%undefined%'
                and (a1.CC_ONADDR != null
                 or a1.CC_ONADDR != '')
              ORDER BY a1.LDATE DESC)"""
