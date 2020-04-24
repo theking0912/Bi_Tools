@@ -4,18 +4,18 @@ import pyhdb
 from getaddress.log import gener_log
 
 # get connection
-def conn_db():
-    connection = pyhdb.connect(
-        host="hana-dw.innoventbio.com",
-        port=30015,
-        user="XDSW_JWD",
-        password="XdswJwd2020"
-    )
+# def conn_db():
+#     connection = pyhdb.connect(
+#         host="hana-dw.innoventbio.com",
+#         port=30015,
+#         user="XDSW_JWD",
+#         password="XdswJwd2020"
+#     )
 
-    return connection
+#     return connection
 
 # get connection
-def conn_db_test():
+def conn_db():
     connection = pyhdb.connect(
         host="172.16.0.62",
         port=34015,

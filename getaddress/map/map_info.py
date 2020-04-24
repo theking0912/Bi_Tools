@@ -27,7 +27,7 @@ key = 'fa12c7c011a50b9c63dad1d13ebdab4a'
 nowdate = datetime.datetime.now().strftime('%Y%m%d')
 
 # 限制数据处理条数，根据API限制规定，高德地图限制6000条/天
-process_count = 24100
+process_count = 1
 
 # insert sql
 insert_sql_be = "INSERT INTO "
@@ -136,7 +136,7 @@ def getAddress(file_path):
             else:
                 continue
     else:
-        return '','E','高德地图key使用已到上限，明日重置！'
+        return '','E',msg
     return data,'S','Success'
 
 # 生成入库语句

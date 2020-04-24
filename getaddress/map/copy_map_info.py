@@ -92,7 +92,7 @@ def getAddress(file_path):
             else:
                 continue
     else:
-        return '','E','高德地图key使用已到上限，明日重置！'
+        return '','E',msg
     return data,'S','Success'
 
 # 生成入库语句
