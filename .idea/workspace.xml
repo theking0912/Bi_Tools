@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15788b7f-a6f2-40d5-a0fa-6c1c831962a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/getaddress/logs/map_info_address_2020042110" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getaddress/logs/map_info_address_2020042214" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/getaddress/logs/map_info_address_2020042215" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dcd8993e-f363-49a6-b023-6b7055c50bed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dcd8993e-f363-49a6-b023-6b7055c50bed.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/dcd8993e-f363-49a6-b023-6b7055c50bed/storage_v2/_src_/schema/sys.zb4BAA.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/dcd8993e-f363-49a6-b023-6b7055c50bed/storage_v2/_src_/schema/sys.zb4BAA.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/geta_ddress_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/geta_ddress_main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getaddress/map/map_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/getaddress/map/map_info.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/getaddress/utils/hanadb.py" beforeDir="false" afterPath="$PROJECT_DIR$/getaddress/utils/hanadb.py" afterDir="false" />
-    </list>
+    <list default="true" id="15788b7f-a6f2-40d5-a0fa-6c1c831962a0" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -254,32 +242,32 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:@ 192.168.99.100" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@54c22733" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@76c507c" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:@ 192.168.99.100" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@3fdb122a" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@1ff38661" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:@ 192.168.99.100" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6928ee7a" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@1ec03eb3" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:@ 192.168.99.100" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@2fe2d881" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@2b209a73" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:@ 192.168.99.100" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6046d89d" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@638dbc3b" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:@ 192.168.99.100" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@6e089386" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@7b8820a3" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
@@ -288,7 +276,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="root:mysql" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="com.intellij.database.console.session.MessageBusSession@29f7872b" type="9fbbdea:ServiceModel$ServiceNode" />
+                <item name="com.intellij.database.console.session.MessageBusSession@9169cb8" type="9fbbdea:ServiceModel$ServiceNode" />
               </path>
             </expand>
             <select />
@@ -329,6 +317,7 @@
       <workItem from="1587603345210" duration="1191000" />
       <workItem from="1587633264762" duration="4465000" />
       <workItem from="1587690178242" duration="788000" />
+      <workItem from="1587691315270" duration="2200000" />
     </task>
     <task id="LOCAL-00001" summary="获取高德地图信息">
       <created>1586857259954</created>
@@ -381,10 +370,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="552" y="186" key="#Inspections/0.0.1920.1050@0.0.1920.1050" timestamp="1586857234221" />
-    <state x="552" y="186" width="1335" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587635764022">
+    <state x="261" y="166" width="1335" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587699928978">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="552" y="186" width="1335" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1587635764022" />
+    <state x="261" y="166" width="1335" height="677" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1587699928978" />
     <state x="633" y="333" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587541135554">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -502,24 +491,9 @@
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/geta_ddress_main.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/geta_ddress_main.py</url>
-          <line>13</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/getaddress/map/map_info.py</url>
           <line>142</line>
           <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/geta_ddress_main.py</url>
-          <line>31</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/getaddress/map/map_info.py</url>
@@ -530,11 +504,6 @@
           <url>file://$PROJECT_DIR$/getaddress/map/map_info.py</url>
           <line>96</line>
           <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/geta_ddress_main.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
