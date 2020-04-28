@@ -1,6 +1,5 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
-import types
 from getaddress.utils import hanadb
 
 if __name__ == "__main__":

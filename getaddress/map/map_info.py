@@ -23,11 +23,11 @@ from getaddress.log import gener_log
 # '3325e00552aa94a5785fd9b65be71b42',
 # '2fbae9ba1fdd5375f9c7e0e84f54ce05',
 # '18921641f129198d0c392a95070f4e30')
-key = 'fa12c7c011a50b9c63dad1d13ebdab4a'
+key = '069cc16b24dc0103cdf9c65bbe69c240'
 nowdate = datetime.datetime.now().strftime('%Y%m%d')
 
 # 限制数据处理条数，根据API限制规定，高德地图限制6000条/天
-process_count = 1
+process_count = 1000
 
 # insert sql
 insert_sql_be = "INSERT INTO "

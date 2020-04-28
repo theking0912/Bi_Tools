@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "connectString": "jdbc:sap://172.16.0.62:34015",
+            "connectionTimeout": 1000,
+            "dialect": "SAPHana",
+            "name": "XDSW_BI"
+        },
+        {
+            "connectString": "jdbc:mysql://192.168.99.100:33061/finedb",
+            "connectionTimeout": 1000,
+            "dialect": "MySQL",
+            "name": "mysql"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
